@@ -265,6 +265,7 @@ namespace VirtualListBoxLib
 			item = new  VirtualListBoxItem();
 			item.DataContext = DataContext;
 			item.Content = DataContext;
+			item.ContentTemplate = ItemTemplate;
 			item.IsSelected = (ItemIndex == SelectedItemIndex);
 			return item;
 		}

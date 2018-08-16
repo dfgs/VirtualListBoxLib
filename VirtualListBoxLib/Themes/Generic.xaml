@@ -24,7 +24,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type local:VirtualListBoxItem}">
 					<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-						<ContentPresenter ContentSource="Content"/>
+						<ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
 					</Border>
 				</ControlTemplate>
 			</Setter.Value>
