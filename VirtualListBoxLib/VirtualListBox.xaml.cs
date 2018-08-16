@@ -43,6 +43,14 @@ namespace VirtualListBoxLib
 		}
 
 
+		public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(VirtualListBox));
+		public DataTemplate ItemTemplate
+		{
+			get { return (DataTemplate)GetValue(ItemTemplateProperty); }
+			set { SetValue(ItemTemplateProperty, value); }
+		}
+
+
 		public VirtualListBox()
 		{
 			InitializeComponent();

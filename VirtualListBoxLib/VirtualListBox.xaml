@@ -9,10 +9,13 @@
 	<UserControl.Style>
 		<Style TargetType="{x:Type UserControl}">
 			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="BorderBrush" Value="#FF888888"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
+			<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"/>
 		</Style>
 	</UserControl.Style>
 	<ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
-		<local:VirtualListBoxPanel  ItemsCount="{Binding ElementName=root,Path=ItemsCount}" VirtualCollection="{Binding ElementName=root,Path=VirtualCollection}" ItemsHeight="{Binding ElementName=root,Path=ItemsHeight}"/>
+		<local:VirtualListBoxPanel  
+			ItemsCount="{Binding ElementName=root,Path=ItemsCount}" VirtualCollection="{Binding ElementName=root,Path=VirtualCollection}" 
+			ItemTemplate="{Binding ElementName=root,Path=ItemTemplate}" ItemsHeight="{Binding ElementName=root,Path=ItemsHeight}"/>
 	</ScrollViewer>
 </UserControl>
