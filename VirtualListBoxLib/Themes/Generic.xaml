@@ -1,18 +1,59 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:VirtualListBoxLib">
-    <Style TargetType="{x:Type local:CustomControl1}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CustomControl1}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
 
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+	<SolidColorBrush x:Key="hooveredBackground" Color="#330078D7" />
+	<SolidColorBrush x:Key="hooverBorderBrush" Color="#880078D7" />
+	<SolidColorBrush x:Key="selectedBackground" Color="#550078D7" />
+	<SolidColorBrush x:Key="selectedBorderBrush" Color="#AA0078D7" />
+	<SolidColorBrush x:Key="inactiveBackground" Color="#33888888" />
+	<SolidColorBrush x:Key="inactiveBorderBrush" Color="#88888888" />
+
+
+	<Style TargetType="{x:Type local:VirtualListBoxItem}">
+		<Setter Property="IsTabStop" Value="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}"/>
+		<Setter Property="SelectedBackground" Value="{StaticResource selectedBackground}"/>
+		<Setter Property="SelectedBorderBrush" Value="{StaticResource selectedBorderBrush}"/>
+		<Setter Property="HooveredBackground" Value="{StaticResource hooveredBackground}"/>
+		<Setter Property="HooveredBorderBrush" Value="{StaticResource hooverBorderBrush}"/>
+		<Setter Property="InactiveBackground" Value="{StaticResource inactiveBackground}"/>
+		<Setter Property="InactiveBorderBrush" Value="{StaticResource inactiveBorderBrush}"/>
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type local:VirtualListBoxItem}">
+					<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+						<ContentPresenter ContentSource="Content"/>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		
+		<Style.Triggers >
+			<Trigger Property="IsMouseOver" Value="true">
+				<Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self},Path=HooveredBackground}"/>
+				<Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self},Path=HooveredBorderBrush}" />
+				<Setter Property="BorderThickness" Value="1"/>
+			</Trigger>
+			<Trigger Property="IsSelected" Value="true">
+				<Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self},Path=SelectedBackground}"/>
+				<Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self},Path=SelectedBorderBrush}" />
+				<Setter Property="BorderThickness" Value="1"/>
+			</Trigger> 
+			<MultiTrigger>
+				<MultiTrigger.Conditions>
+					<Condition Property="IsFocused" Value="false"/>
+					<Condition Property="IsSelected" Value="true"/>
+				</MultiTrigger.Conditions>
+				<MultiTrigger.Setters>
+					<Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self},Path=InactiveBackground}"/>
+					<Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Self},Path=InactiveBorderBrush}" />
+					<Setter Property="BorderThickness" Value="1"/>
+				</MultiTrigger.Setters>
+			</MultiTrigger>
+
+		</Style.Triggers>
+		
+	</Style>
 </ResourceDictionary>

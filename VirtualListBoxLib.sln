@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualListBoxLib", "VirtualListBoxLib\VirtualListBoxLib.csproj", "{4527AD6C-524E-4D94-9C06-55988F0C8580}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{880CA548-7CBA-4F88-8B4B-FF8C1BAAFFAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4527AD6C-524E-4D94-9C06-55988F0C8580}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4527AD6C-524E-4D94-9C06-55988F0C8580}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4527AD6C-524E-4D94-9C06-55988F0C8580}.Release|Any CPU.Build.0 = Release|Any CPU
+		{880CA548-7CBA-4F88-8B4B-FF8C1BAAFFAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{880CA548-7CBA-4F88-8B4B-FF8C1BAAFFAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{880CA548-7CBA-4F88-8B4B-FF8C1BAAFFAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{880CA548-7CBA-4F88-8B4B-FF8C1BAAFFAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
