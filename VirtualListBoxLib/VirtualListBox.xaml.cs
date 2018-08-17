@@ -43,12 +43,31 @@ namespace VirtualListBoxLib
 		}
 
 
+		public static readonly DependencyProperty ExtentWidthProperty = DependencyProperty.Register("ExtentWidth", typeof(double), typeof(VirtualListBox));
+		public double ExtentWidth
+		{
+			get { return (double)GetValue(ExtentWidthProperty); }
+			set { SetValue(ExtentWidthProperty, value); }
+		}
+
+
 		public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(VirtualListBox));
 		public DataTemplate ItemTemplate
 		{
 			get { return (DataTemplate)GetValue(ItemTemplateProperty); }
 			set { SetValue(ItemTemplateProperty, value); }
 		}
+
+
+		public static readonly DependencyProperty SelectedItemIndexProperty = DependencyProperty.Register("SelectedItemIndex", typeof(int), typeof(VirtualListBox));
+		public int SelectedItemIndex
+		{
+			get { return (int)GetValue(SelectedItemIndexProperty); }
+			set { SetValue(SelectedItemIndexProperty, value); }
+		}
+
+
+		
 
 
 		public VirtualListBox()

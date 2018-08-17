@@ -16,35 +16,7 @@ using System.Windows.Shapes;
 
 namespace VirtualListBoxLib
 {
-	/// <summary>
-	/// Suivez les étapes 1a ou 1b puis 2 pour utiliser ce contrôle personnalisé dans un fichier XAML.
-	///
-	/// Étape 1a) Utilisation de ce contrôle personnalisé dans un fichier XAML qui existe dans le projet actif.
-	/// Ajoutez cet attribut XmlNamespace à l'élément racine du fichier de balisage où il doit 
-	/// être utilisé :
-	///
-	///     xmlns:MyNamespace="clr-namespace:VirtualListBoxLib"
-	///
-	///
-	/// Étape 1b) Utilisation de ce contrôle personnalisé dans un fichier XAML qui existe dans un autre projet.
-	/// Ajoutez cet attribut XmlNamespace à l'élément racine du fichier de balisage où il doit 
-	/// être utilisé :
-	///
-	///     xmlns:MyNamespace="clr-namespace:VirtualListBoxLib;assembly=VirtualListBoxLib"
-	///
-	/// Vous devrez également ajouter une référence du projet contenant le fichier XAML
-	/// à ce projet et regénérer pour éviter des erreurs de compilation :
-	///
-	///     Cliquez avec le bouton droit sur le projet cible dans l'Explorateur de solutions, puis sur
-	///     "Ajouter une référence"->"Projets"->[Recherchez et sélectionnez ce projet]
-	///
-	///
-	/// Étape 2)
-	/// Utilisez à présent votre contrôle dans le fichier XAML.
-	///
-	///     <MyNamespace:VirtualListBoxPanel/>
-	///
-	/// </summary>
+	
 	public class VirtualListBoxPanel : VirtualizingPanel, IScrollInfo
 	{
 		public static readonly DependencyProperty ItemsCountProperty = DependencyProperty.Register("ItemsCount", typeof(int), typeof(VirtualListBoxPanel), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.AffectsMeasure));
@@ -132,7 +104,7 @@ namespace VirtualListBoxLib
 		public double ViewportHeight { get; private set; }
 
 
-		public static readonly DependencyProperty HorizontalOffsetProperty = DependencyProperty.Register("HorizontalOffset", typeof(double), typeof(VirtualListBoxPanel), new FrameworkPropertyMetadata(0d));
+		public static readonly DependencyProperty HorizontalOffsetProperty = DependencyProperty.Register("HorizontalOffset", typeof(double), typeof(VirtualListBoxPanel), new FrameworkPropertyMetadata(0d,FrameworkPropertyMetadataOptions.AffectsArrange));
 		public double HorizontalOffset
 		{
 			get { return (double)GetValue(HorizontalOffsetProperty); }
@@ -224,7 +196,7 @@ namespace VirtualListBoxLib
 		{
 			int pageStep;
 
-			pageStep = (int)(ViewportHeight / ItemsHeight)/2;
+			pageStep = GetRowsCount(ViewportHeight)/2;
 			
 
 			e.Handled = false;
@@ -270,6 +242,10 @@ namespace VirtualListBoxLib
 			return item;
 		}
 
+		protected int GetRowsCount(double Height)
+		{
+			return (int)Math.Floor(Height / ItemsHeight);
+		}
 		protected override Size MeasureOverride(Size availableSize)
 		{
 			int itemIndex, childIndex;
@@ -279,11 +255,16 @@ namespace VirtualListBoxLib
 			int maxItemIndex;
 
 
-			visibleItemsCount = (int)(availableSize.Height / ItemsHeight);
+
+			visibleItemsCount = GetRowsCount(availableSize.Height);
 			itemIndex = (int)(VerticalOffset / ItemsHeight);
 
-			maxItemIndex = itemIndex + visibleItemsCount;
-			if (maxItemIndex >= ItemsCount) maxItemIndex = maxItemIndex - 1;
+			if (VirtualCollection == null) maxItemIndex = -1;
+			else
+			{
+				maxItemIndex = itemIndex + visibleItemsCount-1;
+				if (maxItemIndex >= ItemsCount) maxItemIndex = ItemsCount - 1;
+			}
 
 			if (itemIndex >= FirstItemIndex)
 			{
@@ -352,7 +333,7 @@ namespace VirtualListBoxLib
 			childIndex = 0;
 			foreach (UIElement child in InternalChildren)
 			{
-				child.Arrange(new Rect(0, childIndex*ItemsHeight, ViewportWidth, ItemsHeight));
+				child.Arrange(new Rect(-HorizontalOffset, childIndex*ItemsHeight, ViewportWidth, ItemsHeight));
 				childIndex++;
 			}
 

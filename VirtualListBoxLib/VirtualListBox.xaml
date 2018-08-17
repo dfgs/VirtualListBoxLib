@@ -16,6 +16,7 @@
 	<ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
 		<local:VirtualListBoxPanel  
 			ItemsCount="{Binding ElementName=root,Path=ItemsCount}" VirtualCollection="{Binding ElementName=root,Path=VirtualCollection}" 
-			ItemTemplate="{Binding ElementName=root,Path=ItemTemplate}" ItemsHeight="{Binding ElementName=root,Path=ItemsHeight}"/>
+			ItemTemplate="{Binding ElementName=root,Path=ItemTemplate}" ItemsHeight="{Binding ElementName=root,Path=ItemsHeight}"
+			ExtentWidth="{Binding ElementName=root,Path=ExtentWidth}" SelectedItemIndex="{Binding ElementName=root,Path=SelectedItemIndex,Mode=TwoWay}" />
 	</ScrollViewer>
 </UserControl>
