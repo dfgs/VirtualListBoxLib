@@ -321,7 +321,8 @@ namespace VirtualListBoxLib
 			FirstItemIndex = (int)(VerticalOffset/ItemsHeight);
 			ViewportHeight = visibleItemsCount*ItemsHeight;
 			ViewportWidth = availableSize.Width;
-			SetVerticalOffset(VerticalOffset);	// in order to adjust position when sizing control height
+			SetVerticalOffset(VerticalOffset);  // in order to adjust position when sizing control height
+			SetHorizontalOffset(HorizontalOffset);  // in order to adjust position when sizing control width
 
 			return availableSize;
 		}
@@ -333,7 +334,7 @@ namespace VirtualListBoxLib
 			childIndex = 0;
 			foreach (UIElement child in InternalChildren)
 			{
-				child.Arrange(new Rect(-HorizontalOffset, childIndex*ItemsHeight, ViewportWidth, ItemsHeight));
+				child.Arrange(new Rect(-HorizontalOffset, childIndex*ItemsHeight, Math.Max( ViewportWidth,ExtentWidth), ItemsHeight));
 				childIndex++;
 			}
 

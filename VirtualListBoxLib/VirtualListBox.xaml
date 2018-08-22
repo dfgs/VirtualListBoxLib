@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VirtualListBoxLib"
-             mc:Ignorable="d" x:Name="root" 
+             mc:Ignorable="d" x:Name="root"
              d:DesignHeight="450" d:DesignWidth="800">
 	<UserControl.Style>
 		<Style TargetType="{x:Type UserControl}">
@@ -15,6 +15,7 @@
 	</UserControl.Style>
 	<ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
 		<local:VirtualListBoxPanel  
+			VerticalOffset="{Binding ElementName=root,Path=VerticalOffset,Mode=OneWayToSource}" HorizontalOffset="{Binding ElementName=root,Path=HorizontalOffset,Mode=OneWayToSource}"
 			ItemsCount="{Binding ElementName=root,Path=ItemsCount}" VirtualCollection="{Binding ElementName=root,Path=VirtualCollection}" 
 			ItemTemplate="{Binding ElementName=root,Path=ItemTemplate}" ItemsHeight="{Binding ElementName=root,Path=ItemsHeight}"
 			ExtentWidth="{Binding ElementName=root,Path=ExtentWidth}" SelectedItemIndex="{Binding ElementName=root,Path=SelectedItemIndex,Mode=TwoWay}" />

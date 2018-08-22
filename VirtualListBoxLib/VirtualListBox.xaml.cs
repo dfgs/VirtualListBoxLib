@@ -67,7 +67,22 @@ namespace VirtualListBoxLib
 		}
 
 
-		
+		public static readonly DependencyProperty VerticalOffsetProperty = DependencyProperty.Register("VerticalOffset", typeof(double), typeof(VirtualListBox));
+		public double VerticalOffset
+		{
+			get { return (double)GetValue(VerticalOffsetProperty); }
+			set { SetValue(VerticalOffsetProperty, value); }
+		}
+
+
+		public static readonly DependencyProperty HorizontalOffsetProperty = DependencyProperty.Register("HorizontalOffset", typeof(double), typeof(VirtualListBox));
+		public double HorizontalOffset
+		{
+			get { return (double)GetValue(HorizontalOffsetProperty); }
+			set { SetValue(HorizontalOffsetProperty, value); }
+		}
+
+
 
 
 		public VirtualListBox()
